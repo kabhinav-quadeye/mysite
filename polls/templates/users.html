@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="my-4">Users</h1>
+    {% for up in usps %}
+      <div class="card my-4">
+        <div class="card-body">
+          <h2 class="card-title">{{ up.user.username }}</h2>
+          <p class="card-text\"><strong>Email:</strong> {{ up.user.email }}</p>
+          <p class="card-text\"><strong>Department:</strong> {{ up.department }}</p>
+          <p class="card-text"><strong>Location:</strong> {{ up.location }}</p>
+          <p class="card-text\"><strong>Teams:</strong> {{ up.teams }}</p>
+          {% if user_profile.is_internal %}
+            <p class="card-text\"><strong>Date of Joining:</strong> {{ up.doj }}</p>
+          {% endif %}
+          {% if up.user.email|lower in users_on_holiday %}
+            <p class="card-text text-danger\"><strong>On Holiday</strong></p>
+          {% endif %}
+        </div>
+      </div>
+    {% empty %}
+      <p>No users found.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

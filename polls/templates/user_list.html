@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<table>
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Profile Picture</th>
+            <th>Full Name</th>
+            <th>Date Joined</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.email }}</td>
+            <td>
+                {% if user.profile.profile_picture %}
+                <img src="{{ user.profile.profile_picture.url }}" alt="{{ user.email }}'s Profile Picture">
+                {% endif %}
+            </td>
+            <td>{{ user.first_name }} {{ user.last_name }}</td>
+            <td>{{ user.date_joined }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
